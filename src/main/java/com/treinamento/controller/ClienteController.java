@@ -21,7 +21,7 @@ public class ClienteController {
 	ClienteService clienteService;
 	
 	@PostMapping("cliente/novo")
-	public ResponseEntity<Object> criarCliente(@RequestParam(value = "tipo", required = true) String tipoPessoa, @RequestBody Object cliente){
+	public ResponseEntity<?> criarCliente(@RequestParam(value = "tipo", required = true) String tipoPessoa, @RequestBody String cliente){
 		try {
 			return ResponseEntity.ok(clienteService.criarConta(cliente, tipoPessoa ));	
 		}catch (PersistenciaBancoDadosException e) {

@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "TB_CONTA")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Conta implements Serializable {
+public class Conta implements Serializable {
 	
 	//TODO: Validacoes dos campos da tabela CONTA
 
