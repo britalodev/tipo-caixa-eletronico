@@ -5,9 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
@@ -42,19 +41,19 @@ public class ClientePF extends Cliente{
 	@Column(name = "cpf", length = 11, nullable = false)
 	private String cpf;
 
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "d/MM/yyyy")
 	@JsonProperty("data_nascimento")
 	@Column(name = "data_nascimento", nullable = false)
-	@NotEmpty(message = "Data de nascimento não pode ser nulo")
+	@NotNull(message = "Data de nascimento não pode ser nulo")
 	private LocalDate dataNascimento;
 
 	@NotEmpty(message = "Banco não pode ser nulo")
 	private String banco;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "d/MM/yyyy")
 	@JsonProperty("data_adesao")
 	@Column(name = "data_adesao", nullable = false)
-	@NotEmpty(message = "Data de adesão não pode ser nulo")
+	@NotNull(message = "Data de adesão não pode ser nulo")
 	private LocalDate dataAdesao;
 
 }

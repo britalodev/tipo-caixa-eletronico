@@ -2,12 +2,10 @@ package com.treinamento.service.impl;
 
 import java.util.List;
 
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import com.treinamento.exception.OpcaoInvalidaException;
 import com.treinamento.exception.PersistenciaBancoDadosException;
 import com.treinamento.model.Cliente;
@@ -23,7 +21,9 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Autowired
 	ClienteRepository clienteDAO;
+	@Autowired
 	ClientePFRepository clientePFDAO;
+	@Autowired
 	ClientePJRepository clientePJDAO;
 	@Autowired
 	ObjectMapper mapper;
