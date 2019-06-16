@@ -1,14 +1,11 @@
 package com.treinamento.service.impl;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-
-import javax.persistence.PersistenceException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.treinamento.exception.OpcaoInvalidaException;
 import com.treinamento.exception.PersistenciaBancoDadosException;
 import com.treinamento.model.Cliente;
@@ -26,15 +23,16 @@ public class ClienteServiceImpl implements ClienteService {
 	ClienteRepository clienteDAO;
 	ClientePFRepository clientePFDAO;
 	ClientePJRepository clientePJDAO;
+	@Autowired
+	ObjectMapper mapper;
 
 	@Override
 	public Object criarConta(Object cliente, String tipoConta) {
 
 	
 		Object novoCliente;
-		if (tipoConta.equals("PF")) {
-			ClientePF pf = (ClientePF) cliente;
-			novoCliente = clientePFDAO.save(pf);
+		if (tipoConta.equals("PF")) {			
+			novoCliente = clientePFDAO.save(objectParaClientePf(cliente));
 		} else if (tipoConta.equals("PJ")) {
 			ClientePJ pj = (ClientePJ) cliente;
 			novoCliente = clientePJDAO.save(pj);
@@ -45,6 +43,18 @@ public class ClienteServiceImpl implements ClienteService {
 		if (novoCliente.equals(null))
 			throw new PersistenciaBancoDadosException("Falha no banco de dados ao criar o Cliente");
 		return novoCliente;
+	}
+	
+	private ClientePF objectParaClientePf(Object cliente) {
+		ClientePF clientePF = new ClientePF();
+		try {
+			String clienteString = cliente.toString();
+			clientePF = mapper.readValue(clienteString, ClientePF.class);
+			return clientePF;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return clientePF;
 	}
 
 	@Override
