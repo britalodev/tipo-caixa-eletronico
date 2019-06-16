@@ -27,6 +27,11 @@ import lombok.NoArgsConstructor;
 public class ClientePF extends Cliente{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6561172887498911526L;
+
 	@Length(max = 11, message = "RG não pode ter mais que {max} caracteres")
 	@Column(name = "rg", length = 11, nullable = true)
 	private String rg;

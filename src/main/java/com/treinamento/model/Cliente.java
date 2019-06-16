@@ -30,6 +30,11 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cliente implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_cliete")
 	@SequenceGenerator(allocationSize = 1, name = "seq_cliente", sequenceName = "seq_cliente_id")
